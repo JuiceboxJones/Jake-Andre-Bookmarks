@@ -5,6 +5,7 @@ function main() {
   //nest event listeners for page ready
   console.log('connected');
   bookmarkList.bindEventListeners();
+  bookmarkList.render();
 }
 
 $(main);

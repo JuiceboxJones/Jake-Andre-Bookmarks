@@ -2,39 +2,35 @@
 // eslint-disable-next-line no-unused-vars
 'use strict';
 
-const STORE = { 
-  bookmarks: [{
+const store = (function(){
+  // TESTING
+  const bookmarks = [{
     title: 'Google', 
     rating: 4, 
     url: 'https://www.google.com', 
     description: 'popular search engine', 
     expanded: false
-  }],
-  errors: {title: false, url: false},
-  createBookmark: false};
+  }];
 
-
-const store = (function(){
-  
-  const addItem = function(item) {
+  const addBookmark = function(bookmark) {
     try {
-      this.items.push(item);
+      this.bookmarks.push(bookmark);
     } catch(e) {
       console.log(e.message);
     }
   };
 
   const findById = function(id) {
-    return this.items.find(item => item.id === id);
+    return this.bookmarks.find(item => item.id === id);
   };
 
   const findAndUpdate = function(id, newData){
-    const item = this.items.find(item => item.id === id);
+    const item = this.bookmarks.find(item => item.id === id);
     Object.assign(item, newData);
   };
 
   const findAndDelete = function(id) {
-    this.items = this.items.filter(item => item.id !== id);
+    this.bookmarks = this.bookmarks.filter(item => item.id !== id);
   };
 
 // change to rating filter
@@ -50,12 +46,15 @@ const store = (function(){
 
 
   return {
-    bookmarks: [],
+    // remember to make bookmarks an empty array
+    bookmarks,
     findAndUpdate,
-    addItem,
+    addBookmark,
     findById,
     findAndDelete,
     setItemIsEditing,
+    errors: {title: false, url: false},
+    createBookmark: false
   };
   
 }());
