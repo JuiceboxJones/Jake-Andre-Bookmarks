@@ -19,7 +19,7 @@ const bookmarkList = (function() {
     let expandedInfo = '';
     if(bookmark.expanded === true){
       expandedInfo = `<p>Description:${bookmark.desc}</p>
-      <button id='delete'>Delete</button>`;
+      <button id='delete'>🗑️</button>`;
     }
 
     for(let i = 0; i < bookmark.rating; i++) {
@@ -28,7 +28,7 @@ const bookmarkList = (function() {
 
     return `
       <li class="minimized" data-id='${bookmark.id}'>
-        <p>${bookmark.title} <button id="expand">Expand</button></p>
+        <p>${bookmark.title} <button id="expand">${bookmark.expanded ? '➖': '➕'}</button></p>
         <p>Rating: ${ratingStars}</p>
         ${expandedInfo}
       </li>
