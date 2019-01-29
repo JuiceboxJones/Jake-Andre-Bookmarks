@@ -1,5 +1,7 @@
 'use strict';
 
+/* global store, api */
+
 $.fn.extend({
   serializeJson: function() {
     const formData = new FormData(this[0]);
@@ -14,14 +16,21 @@ $.fn.extend({
 const bookmarkList = (function() {
   const generateBookmarkHtml = function(bookmark) {
     let ratingStars = '';
+    let expandedInfo = '';
+    if(bookmark.expanded === true){
+      expandedInfo = `<p>Description:${bookmark.desc}</p>
+      <button id='delete'>Delete</button>`;
+    }
+
     for(let i = 0; i < bookmark.rating; i++) {
       ratingStars += '★';
     }
 
     return `
-      <li class="minimized">
-        <p>${bookmark.title} <button>Expand</button></p>
+      <li class="minimized" data-id='${bookmark.id}'>
+        <p>${bookmark.title} <button id="expand">Expand</button></p>
         <p>Rating: ${ratingStars}</p>
+        ${expandedInfo}
       </li>
     `;
   };
@@ -44,15 +53,36 @@ const bookmarkList = (function() {
       event.preventDefault();
       let form = $(event.target).serializeJson();
       console.log(form);
+      api.createBookmark(form)
+        .then(newBookmark => {
+          if(typeof newBookmark === 'undefined'){
+            throw new TypeError('error');
+          }
+          store.addBookmark(form);
+          render();
+        });
+      
+    });};
 
-      store.addBookmark(form);
-      render();
-    });}
+  const expandBookmark = function(element) {
+    let id = element.data('id');
+    let bookmark = store.bookmarks.find(element => element.id === id);
+    bookmark.expanded = !bookmark.expanded;
+  };
+
+  const deleteBookmark = function(element) {
+    let id = element.data('id');
+    api.deleteBookmark(id);
+    store.findAndDelete(id);
+  }
   
   const handleBookmarkControls = function() {
-    $('.bookmark')
+    $('#js-bookmarks')
       // expand button
-      .on('click', '.btn-expand', event => {
+      .on('click', '#expand', event => {
+        const element = $(event.currentTarget).closest('li');
+        expandBookmark(element)
+        
         render();
       })
       // minimize button
@@ -60,7 +90,9 @@ const bookmarkList = (function() {
         render();
       })
       // delete button
-      .on('click', '.btn-delete', event => {
+      .on('click', '#delete', event => {
+        const element = $(event.currentTarget).closest('li');
+        deleteBookmark(element);
         render();
       });
   };

@@ -4,16 +4,17 @@
 
 const store = (function(){
   // TESTING
-  const bookmarks = [{
-    title: 'Google', 
-    rating: 4, 
-    url: 'https://www.google.com', 
-    description: 'popular search engine', 
-    expanded: false
-  }];
+  // const bookmarks = [{
+  //   title: 'Google', 
+  //   rating: 4, 
+  //   url: 'https://www.google.com', 
+  //   description: 'popular search engine', 
+  //   expanded: false
+  // }];
 
   const addBookmark = function(bookmark) {
     try {
+      bookmark.expanded = false;
       this.bookmarks.push(bookmark);
     } catch(e) {
       console.log(e.message);
@@ -47,7 +48,7 @@ const store = (function(){
 
   return {
     // remember to make bookmarks an empty array
-    bookmarks,
+    bookmarks: [],
     findAndUpdate,
     addBookmark,
     findById,
