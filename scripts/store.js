@@ -49,6 +49,7 @@ const store = (function(){
   return {
     // remember to make bookmarks an empty array
     bookmarks: [],
+    minimumRating: 0,
     findAndUpdate,
     addBookmark,
     findById,

@@ -42,7 +42,8 @@ const bookmarkList = (function() {
   };
 
   const render = function() {
-    const html = generateBookmarkPage(store.bookmarks);
+    let bookmarks = store.bookmarks.filter(item => item.rating > store.minimumRating);
+    const html = generateBookmarkPage(bookmarks);
     console.log('it works!');
     $('#js-bookmarks').html(html);
   };
@@ -52,13 +53,12 @@ const bookmarkList = (function() {
     $('.add-bookmark').submit(event => {
       event.preventDefault();
       let form = $(event.target).serializeJson();
-      console.log(form);
       api.createBookmark(form)
         .then(newBookmark => {
           if(typeof newBookmark === 'undefined'){
             throw new TypeError('error');
           }
-          store.addBookmark(form);
+          store.addBookmark(newBookmark);
           render();
         });
       
@@ -74,14 +74,18 @@ const bookmarkList = (function() {
     let id = element.data('id');
     api.deleteBookmark(id);
     store.findAndDelete(id);
-  }
+  };
+
+  const filterByRating = function(rating) {
+    store.minimumRating = rating;
+  };
   
   const handleBookmarkControls = function() {
     $('#js-bookmarks')
       // expand button
       .on('click', '#expand', event => {
         const element = $(event.currentTarget).closest('li');
-        expandBookmark(element)
+        expandBookmark(element);
         
         render();
       })
@@ -98,7 +102,10 @@ const bookmarkList = (function() {
   };
   
   const handleFilter = function (){
-  
+    $('#filter-by-rating').on('change', event => {
+      filterByRating(event.currentTarget.value);
+      render();
+    });
   };
 
   const bindEventListeners = function() {
