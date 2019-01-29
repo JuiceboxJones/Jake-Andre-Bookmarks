@@ -17,8 +17,10 @@ const bookmarkList = (function() {
   const generateBookmarkHtml = function(bookmark) {
     let ratingStars = '';
     let expandedInfo = '';
-    if(bookmark.expanded === true){
+
+    if(bookmark.expanded){
       expandedInfo = `<p>Description:${bookmark.desc}</p>
+      <a href="${bookmark.url}" target="_blank">Visit site</a>
       <button id='delete'>🗑️</button>`;
     }
 
@@ -42,7 +44,7 @@ const bookmarkList = (function() {
   };
 
   const render = function() {
-    let bookmarks = store.bookmarks.filter(item => item.rating > store.minimumRating);
+    let bookmarks = store.bookmarks.filter(item => item.rating >= parseInt(store.minimumRating));
     const html = generateBookmarkPage(bookmarks);
     console.log('it works!');
     $('#js-bookmarks').html(html);
