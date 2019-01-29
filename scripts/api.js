@@ -1,4 +1,5 @@
 'use strict';
+/*
 const api = (function () {
   const BASE_URL = 'https://thinkful-list-api.herokuapp.com/jake-andre/bookmarks';
   
@@ -55,3 +56,4 @@ const api = (function () {
       method: 'DELETE'
     });
   };
+  */

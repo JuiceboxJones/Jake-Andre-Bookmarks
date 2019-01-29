@@ -1,3 +1,5 @@
+/* global api */
+// eslint-disable-next-line no-unused-vars
 'use strict';
 
 const STORE = { 
@@ -11,9 +13,7 @@ const STORE = {
   errors: {title: false, url: false},
   createBookmark: false};
 
-/* global Item api */
 
-// eslint-disable-next-line no-unused-vars
 const store = (function(){
   
   const addItem = function(item) {
@@ -50,14 +50,11 @@ const store = (function(){
 
 
   return {
-    items: [],
-    hideCheckedItems: false,
-    searchTerm: '',
+    bookmarks: [],
     findAndUpdate,
     addItem,
     findById,
     findAndDelete,
-    toggleCheckedFilter,
     setItemIsEditing,
   };
   
