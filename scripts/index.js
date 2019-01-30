@@ -11,7 +11,6 @@ function main() {
       items.forEach((item) => store.addBookmark(item));
       bookmarkList.render();
     });
-//   bookmarkList.render();
 }
 
 $(main);

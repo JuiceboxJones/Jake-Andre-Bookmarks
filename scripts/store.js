@@ -34,15 +34,6 @@ const store = (function(){
     this.bookmarks = this.bookmarks.filter(item => item.id !== id);
   };
 
-// change to rating filter
-  const toggleCheckedFilter = function() {
-    this.hideCheckedItems = !this.hideCheckedItems;
-  };
-
-  const setItemIsEditing = function(id, isEditing) {
-    const item = this.findById(id);
-    item.isEditing = isEditing;
-  };
 
 
 
@@ -54,7 +45,6 @@ const store = (function(){
     addBookmark,
     findById,
     findAndDelete,
-    setItemIsEditing,
     errors: {title: false, url: false},
     createBookmark: false
   };

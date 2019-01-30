@@ -12,7 +12,7 @@ $.fn.extend({
   }
 });
 
-
+// generate HTML on page for bookmark entries
 const bookmarkList = (function() {
   const generateBookmarkHtml = function(bookmark) {
     let ratingStars = '';
@@ -42,7 +42,8 @@ const bookmarkList = (function() {
 
     return items.join('');
   };
-
+  
+  //render HTML
   const render = function() {
     let bookmarks = store.bookmarks.filter(item => item.rating >= parseInt(store.minimumRating));
     const html = generateBookmarkPage(bookmarks);
@@ -50,7 +51,7 @@ const bookmarkList = (function() {
     $('#js-bookmarks').html(html);
   };
   
-  
+  //Grab the input info from the forms, convert to json
   const handleSubmitForm = function (){
     $('.add-bookmark').submit(event => {
       event.preventDefault();
@@ -66,6 +67,34 @@ const bookmarkList = (function() {
       
     });};
 
+  //handle the ezpanded features of the bookmarks
+  const handleBookmarkControls = function() {
+    $('#js-bookmarks')
+      // expand button
+      .on('click', '#expand', event => {
+        const element = $(event.currentTarget).closest('li');
+        expandBookmark(element);
+        
+        render();
+      })
+
+      // delete button
+      .on('click', '#delete', event => {
+        const element = $(event.currentTarget).closest('li');
+        deleteBookmark(element);
+        render();
+      });
+  };
+  
+  //handle the filter by stars feature
+  const handleFilter = function (){
+    $('#filter-by-rating').on('change', event => {
+      filterByRating(event.currentTarget.value);
+      render();
+    });
+  };
+
+  //feature supporting functions -move to store.js before we finish
   const expandBookmark = function(element) {
     let id = element.data('id');
     let bookmark = store.bookmarks.find(element => element.id === id);
@@ -80,34 +109,6 @@ const bookmarkList = (function() {
 
   const filterByRating = function(rating) {
     store.minimumRating = rating;
-  };
-  
-  const handleBookmarkControls = function() {
-    $('#js-bookmarks')
-      // expand button
-      .on('click', '#expand', event => {
-        const element = $(event.currentTarget).closest('li');
-        expandBookmark(element);
-        
-        render();
-      })
-      // minimize button
-      .on('click', '.btn-minimize', event => {
-        render();
-      })
-      // delete button
-      .on('click', '#delete', event => {
-        const element = $(event.currentTarget).closest('li');
-        deleteBookmark(element);
-        render();
-      });
-  };
-  
-  const handleFilter = function (){
-    $('#filter-by-rating').on('change', event => {
-      filterByRating(event.currentTarget.value);
-      render();
-    });
   };
 
   const bindEventListeners = function() {
@@ -125,6 +126,7 @@ const bookmarkList = (function() {
   };
 
   return {
-    render, bindEventListeners
+    render, 
+    bindEventListeners
   };
 }());
