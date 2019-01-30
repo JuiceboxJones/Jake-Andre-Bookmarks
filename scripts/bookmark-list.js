@@ -19,7 +19,7 @@ const bookmarkList = (function() {
     let expandedInfo = '';
 
     if(bookmark.expanded){
-      expandedInfo = `<p>Description:${bookmark.desc}</p>
+      expandedInfo = `<p class="bookmark-description">Description:${bookmark.desc}</p>
       <a href="${bookmark.url}" target="_blank">Visit site</a>
       <button id='delete'>🗑️</button>`;
     }
@@ -30,8 +30,8 @@ const bookmarkList = (function() {
 
     return `
       <li class="minimized" data-id='${bookmark.id}'>
-        <p>${bookmark.title} <button id="expand">${bookmark.expanded ? '➖': '➕'}</button></p>
-        <p>Rating: ${ratingStars}</p>
+        <p class="bookmark-title">${bookmark.title} <button id="expand">${bookmark.expanded ? '➖': '➕'}</button></p>
+        <p class="bookmark-rating">Rating: ${ratingStars}</p>
         ${expandedInfo}
       </li>
     `;
