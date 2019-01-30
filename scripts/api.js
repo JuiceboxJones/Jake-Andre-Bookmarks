@@ -1,4 +1,5 @@
 'use strict';
+/* global store */
 
 const api = (function () {
 
@@ -17,9 +18,10 @@ const api = (function () {
       })
       .then(data => {
         if (error) throw new Error(data.message);
+        store.hideError('');
         return data;
       })
-      .catch(err => alert(err.message));
+      .catch(err => store.showError(err.message));
   }
 
   // GET request

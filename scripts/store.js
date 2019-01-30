@@ -34,6 +34,16 @@ const store = (function(){
     this.bookmarks = this.bookmarks.filter(item => item.id !== id);
   };
 
+  const showError = function(error){
+    $('.errorMessage').removeClass('hidden');
+    this.error = error;
+  }
+
+  const hideError = function(){
+    $('.errorMessage').addClass('hidden');
+    this.error = '';
+  }
+
 
 
 
@@ -45,7 +55,9 @@ const store = (function(){
     addBookmark,
     findById,
     findAndDelete,
-    errors: {title: false, url: false},
+    showError,
+    hideError,
+    error: '',
     createBookmark: false
   };
   

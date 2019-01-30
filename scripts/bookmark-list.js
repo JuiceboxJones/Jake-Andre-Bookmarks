@@ -19,7 +19,7 @@ const bookmarkList = (function() {
     let expandedInfo = '';
 
     if(bookmark.expanded){
-      expandedInfo = `<p class="bookmark-description">Description:${bookmark.desc}</p>
+      expandedInfo = `<p class="bookmark-description"><strong>Description:</strong> ${bookmark.desc}</p>
       <a href="${bookmark.url}" target="_blank">Visit site</a>
       <button id='delete'>🗑️</button>`;
     }
@@ -31,7 +31,7 @@ const bookmarkList = (function() {
     return `
       <li class="minimized" data-id='${bookmark.id}'>
         <p class="bookmark-title">${bookmark.title} <button id="expand">${bookmark.expanded ? '➖': '➕'}</button></p>
-        <p class="bookmark-rating">Rating: ${ratingStars}</p>
+        <p class="bookmark-rating"> ${ratingStars}</p>
         ${expandedInfo}
       </li>
     `;
@@ -48,6 +48,7 @@ const bookmarkList = (function() {
     const html = generateBookmarkPage(bookmarks);
     console.log('it works!');
     $('#js-bookmarks').html(html);
+    $('.errorMessage').html(store.error);
   };
   
   //Grab the input info from the forms, convert to json
@@ -58,7 +59,8 @@ const bookmarkList = (function() {
       api.createBookmark(form)
         .then(newBookmark => {
           if(typeof newBookmark === 'undefined'){
-            throw new TypeError('error');
+            store.showError(`title required / 
+            url	required and must include (http/https)`);
           }
           store.addBookmark(newBookmark);
           event.currentTarget.reset();
