@@ -9,6 +9,7 @@
   src="https://code.jquery.com/jquery-3.3.1.min.js"
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
   crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <main class="main-container" role="main">
@@ -16,11 +17,11 @@
       <h1>Jake & Andre's Bookmark App</h1>
     </header>
 
-    <section role="form">add bookmark
-      <form class="add-bookmark" id="add-bookmark">
-        <input type="text" name="title"> 
-        <input type="text" name="url">
-        <input type="text" name="desc">
+    <section role="form"><button class="hide-bookmark">Add Bookmark</button>
+      <form class="add-bookmark hidden" id="add-bookmark">
+        <input type="text" name="title" placeholder="Bookmark name"> 
+        <input type="text" name="url" placeholder="URL">
+        <input type="text" name="desc" placeholder="Description">
         <select form="add-bookmark" name="rating">
           <option>1</option>
           <option>2</option>
@@ -32,6 +33,7 @@
       </form>
     </section>
     <section class="filter">
+      <label for="filter-by-rating">Filter ratings</label>
       <select id="filter-by-rating">
         <option>0</option>
         <option>1</option>

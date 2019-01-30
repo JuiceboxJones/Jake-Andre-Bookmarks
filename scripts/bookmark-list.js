@@ -39,7 +39,6 @@ const bookmarkList = (function() {
 
   const generateBookmarkPage = function(bookmarkItems) {
     const items = bookmarkItems.map(item => generateBookmarkHtml(item));
-
     return items.join('');
   };
   
@@ -62,6 +61,9 @@ const bookmarkList = (function() {
             throw new TypeError('error');
           }
           store.addBookmark(newBookmark);
+          event.currentTarget.reset();
+          $('.hide-bookmark').removeClass('hidden');
+          $('#add-bookmark').toggleClass('hidden');
           render();
         });
       
@@ -86,6 +88,13 @@ const bookmarkList = (function() {
       });
   };
   
+  const handleToggleForm = function() {
+    $('.hide-bookmark').on('click', event => {
+      $('#add-bookmark').toggleClass('hidden');
+      $(event.currentTarget).addClass('hidden');
+    });
+  };
+
   //handle the filter by stars feature
   const handleFilter = function (){
     $('#filter-by-rating').on('change', event => {
@@ -115,6 +124,7 @@ const bookmarkList = (function() {
     handleBookmarkControls();
     handleSubmitForm();
     handleFilter();
+    handleToggleForm();
   };
 
   const serializeJson = function(form) {
