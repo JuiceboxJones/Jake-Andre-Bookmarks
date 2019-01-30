@@ -1,3 +1,60 @@
+.main-container{
+  width:33%;
+  margin: 0 auto;
+  
+}
+
+body{
+  margin: none;
+}
+
 .hidden{
-  display: none;
+  display: none !important;
+}
+
+ul{
+  list-style-type: none;
+}
+
+h1 {
+  text-align: center;
+}
+
+.hide-bookmark{
+  display:block;
+  width:100%;
+}
+
+.add-bookmark-section{
+  margin: 15px 0px;
+}
+
+#add-bookmark{
+  width: 100%;
+  display: block;
+  padding: 0 25%;
+}
+
+#add-bookmark input{
+  margin-bottom: 5px;
+}
+
+.single-line-input{
+width: 50%;
+margin: 0;
+}
+
+.multi-line-input{
+width: 50%;
+height: 50px;
+}
+
+select{
+  height: 25px;
+}
+
+.js-submit-bookmark{
+  margin-left: 4px;
+  width: 65px;
+  height: 26px;
 }

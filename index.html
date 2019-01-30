@@ -14,20 +14,22 @@
 <body>
   <main class="main-container" role="main">
     <header role="heading">
-      <h1>Jake & Andre's Bookmark App</h1>
+      <h1>My Bookmarks</h1>
     </header>
 
-    <section role="form"><button class="hide-bookmark">Add Bookmark</button>
+    <section role="form" class="add-bookmark-section"><button class="hide-bookmark">Add Bookmark</button>
       <form class="add-bookmark hidden" id="add-bookmark">
-        <input type="text" name="title" placeholder="Bookmark name"> 
-        <input type="text" name="url" placeholder="URL">
-        <input type="text" name="desc" placeholder="Description">
-        <select form="add-bookmark" name="rating">
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5</option>   
+        <input type="text" name="title" placeholder="Bookmark name" class="single-line-input"> 
+        <input type="text" name="url" placeholder="URL" class="single-line-input">
+        <input type="text" name="desc" placeholder="Description" class="multi-line-input">
+        <br>
+        <label for="rating">Rating</label>
+        <select form="add-bookmark" name="rating" id="rating">
+        <option>(1) ★</option>
+        <option>(2) ★★</option>
+        <option>(3) ★★★</option>
+        <option>(4) ★★★★</option>
+        <option>(5) ★★★★★</option>   
         </select>
         <input type="submit" class="js-submit-bookmark">
       </form>
@@ -35,12 +37,12 @@
     <section class="filter">
       <label for="filter-by-rating">Filter ratings</label>
       <select id="filter-by-rating">
-        <option>0</option>
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
-        <option>5</option>   
+        <option>(0) ✰</option>
+        <option>(1) ★</option>
+        <option>(2) ★★</option>
+        <option>(3) ★★★</option>
+        <option>(4) ★★★★</option>
+        <option>(5) ★★★★★</option>   
       </select>
     </section>
 
