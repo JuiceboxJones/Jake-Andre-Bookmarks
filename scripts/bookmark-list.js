@@ -19,7 +19,7 @@ const bookmarkList = (function() {
     let expandedInfo = '';
 
     if(bookmark.expanded){
-      expandedInfo = `<p class="bookmark-description"><strong>Description:</strong> ${bookmark.desc}</p>
+      expandedInfo = `<pre class="bookmark-description"><strong>Description:</strong> ${bookmark.desc}</pre>
       <a href="${bookmark.url}" target="_blank">Visit site</a>
       <button id='delete'>🗑️</button>`;
     }
@@ -85,8 +85,10 @@ const bookmarkList = (function() {
       // delete button
       .on('click', '#delete', event => {
         const element = $(event.currentTarget).closest('li');
-        deleteBookmark(element);
-        render();
+        if(confirm('Are you sure you want to delete?')) {
+          deleteBookmark(element);
+          render();
+        }
       });
   };
   
@@ -114,8 +116,11 @@ const bookmarkList = (function() {
 
   const deleteBookmark = function(element) {
     let id = element.data('id');
-    api.deleteBookmark(id);
-    store.findAndDelete(id);
+    api.deleteBookmark(id)
+      .then(res => {
+        store.findAndDelete(id);
+        render();
+      });
   };
 
   const filterByRating = function(rating) {
