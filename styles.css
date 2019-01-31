@@ -105,6 +105,7 @@ border: 0;
 border-bottom: 2px solid #8a8989;
 font-size: 18px;
 padding: 5px;
+box-sizing: border-box;
 }
 
 select{
@@ -195,4 +196,48 @@ li a:hover {
 button,
 .js-submit-bookmark {
   cursor: pointer;
+}
+
+@media screen and (max-width: 375px) {
+
+  .main-container {
+    padding: 1em 1em;
+    width: 75%;
+    background: none;
+  }
+
+  h1 {
+    font-size: 1.9em;
+    -webkit-text-fill-color: #0c090961;
+  }
+
+  .bookmark-description{
+    margin: 7px 15px 27px 12px;
+    padding: 0px 5px 5px 10px;
+    display: inline-grid;
+  }
+
+  
+
+  
+}
+
+@media screen and (max-width: 480px) {
+
+  .main-container {
+    padding: 1em 1em;
+    width: 75%;
+    background: none;
+  }
+
+  h1 {
+    font-size: 1.9em;
+    -webkit-text-fill-color: #0c090961;
+  }
+
+  .bookmark-description{
+    margin: 7px 15px 27px 12px;
+    padding: 0px 5px 5px 10px;
+    
+  }
 }
