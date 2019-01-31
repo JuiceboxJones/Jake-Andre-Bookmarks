@@ -19,9 +19,9 @@
 
     <section role="form" class="add-bookmark-section"><p class="errorMessage hidden"></p><button class="hide-bookmark">Add Bookmark</button>
       <form class="add-bookmark hidden" id="add-bookmark">
-        <input type="text" name="title" placeholder="Bookmark name" class="single-line-input"> 
-        <input type="text" name="url" placeholder="URL" class="single-line-input">
-        <input type="text" name="desc" placeholder="Description" class="multi-line-input">
+        <input type="text" name="title" placeholder="Bookmark name" class="single-line-input" required> 
+        <input type="url" name="url" placeholder="URL" class="single-line-input" required>
+        <textarea type="text" name="desc" placeholder="Description" class="multi-line-input"></textarea>
         <br>
         <label for="rating">Rating</label>
         <select form="add-bookmark" name="rating" id="rating">
