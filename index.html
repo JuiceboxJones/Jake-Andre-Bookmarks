@@ -19,11 +19,16 @@
 
     <section role="form" class="add-bookmark-section"><p class="errorMessage hidden"></p><button class="hide-bookmark">Add Bookmark</button>
       <form class="add-bookmark hidden" id="add-bookmark">
-        <input type="text" name="title" placeholder="Bookmark name" class="single-line-input" required> 
-        <input type="url" name="url" placeholder="URL" class="single-line-input" required>
-        <textarea type="text" name="desc" placeholder="Description" class="multi-line-input"></textarea>
-        <br>
-        <label for="rating">Rating</label>
+        <label for="title" class="hidden-label">
+        <input type="text" id="title" name="title" placeholder="Bookmark name" class="single-line-input" required>
+        </label>
+        <label for="url" class="hidden-label"> 
+        <input type="url" id="url" name="url" placeholder="URL" class="single-line-input" required>
+        </label>
+        <label for="desc" class="hidden-label">
+        <textarea type="text" id="desc" name="desc" placeholder="Description" class="multi-line-input"></textarea>
+        </label>
+        <p><label for="rating">Rating</label></p>
         <select form="add-bookmark" name="rating" id="rating">
         <option value="1">(1) ★</option>
         <option value="2">(2) ★★</option>

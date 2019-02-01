@@ -46,7 +46,7 @@ li.minimized {
 h1 {
   text-align: center;
   font-family: 'work sans';
-  font-size: 3.9em;
+  font-size: 57px;
   background-image: url('https://i.pinimg.com/236x/1e/d3/b9/1ed3b9de2f61b65a8aa2a093b637f944--iphone--wallpaper-green-wallpaper.jpg');
   background-size: cover;
   /* background-attachment: fixed; */
@@ -196,6 +196,10 @@ li a:hover {
 button,
 .js-submit-bookmark {
   cursor: pointer;
+}
+
+#hidden-label{
+  display: none;
 }
 
 @media screen and (max-width: 375px) {
